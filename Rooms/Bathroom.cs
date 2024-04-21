@@ -19,7 +19,7 @@ You can return to your [bedroom].
                     Console.WriteLine("You relax in the bath.");
                     break;
                 case "mirror":
-                    Console.WriteLine("You see the numbers 2314 written on the fog on your mirror.");
+                    Console.WriteLine("You see the numbers 2024 written on the fog on your mirror.");
                     break;
                 case "bedroom":
                     Console.WriteLine("You return to your bedroom.");
