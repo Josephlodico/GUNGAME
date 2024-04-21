@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Remoting.Channels;
 
 namespace NarrativeProject
 {
@@ -9,6 +10,13 @@ namespace NarrativeProject
         internal bool IsGameOver() => isFinished;
         static bool isFinished;
         static string nextRoom = "";
+
+        // where is the constructor???
+        // >> there is no constructor we can see
+        // how is that possible???
+        // >> When a class has no constructor
+        // A default (parameterless) ctor is provided
+
 
         internal void Add(Room room)
         {
@@ -26,7 +34,7 @@ namespace NarrativeProject
             currentRoom.ReceiveChoice(choice);
             CheckTransition();
         }
-
+        // : is a Type Constraint
         internal static void Transition<T>() where T : Room
         {
             nextRoom = typeof(T).Name;
