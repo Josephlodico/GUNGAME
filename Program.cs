@@ -4,7 +4,7 @@ using System;
 namespace NarrativeProject
 {
     
-
+    // project name GUNGAME
         internal class program
         {
                 static void Main(string[] args)
@@ -18,9 +18,12 @@ namespace NarrativeProject
 
                     var game = new Game();
 
-                    game.Add(new Bedroom());
-                    game.Add(new Bathroom());
-                    game.Add(new AtticRoom());
+                    game.Add(new blackroom());
+                    game.Add(new greenroom());
+                    game.Add(new redroom());
+                    game.Add(new pinkroom());
+                    game.Add(new blueroom());
+            
                     
                     
 
