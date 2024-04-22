@@ -51,9 +51,10 @@ namespace NarrativeProject.Rooms
                         Console.WriteLine("You defeated the monster!");
                         Console.WriteLine("You cleared the red room!");
                         // Add completed room to the list
+                       //completedRooms.Add("red");
                     }
 
-                    break;
+                    
                 }
 
             }
