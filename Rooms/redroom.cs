@@ -1,13 +1,16 @@
 ﻿using System;
-using static NarrativeProject.program;
 using static System.Collections.Specialized.BitVector32;
 using System.Threading;
 using System.Collections.Generic;
 using System.Collections;
 
+
 namespace NarrativeProject.Rooms
 {
-
+    public class Goblin
+    {
+        public int enemyHP = 50;
+    }
     internal class redroom : Room
     {
         
