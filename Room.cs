@@ -4,6 +4,6 @@
     {
 
         internal abstract string CreateDescription();
-        internal abstract void ReceiveChoice(string choice);
+        internal abstract void ReceiveTask(string choice);
     }
 }
