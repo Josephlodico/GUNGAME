@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Xml.Serialization;
 
 namespace NarrativeProject
 {
@@ -70,20 +71,22 @@ namespace NarrativeProject
 
             List<string> completedRooms = new List<string>();
             string room;
-            {
-                
-            }
 
-            while (completedRooms.Count < 5) // Change '>' to '<' to ensure loop runs until 5 rooms are completed
+
+
+
+            while (completedRooms.Count < 5) // Ensure loop runs until 5 rooms are completed
             {
                 Console.WriteLine("You see 6 doors in front of you, though one is locked. Once you complete a task in 5 rooms, the last door will open. Type the color room door you want");
 
-               
-                
                 var game = new Game();
 
                 game.Add(new redroom());
-                Console.WriteLine("1- [red door]");
+                {
+                    Console.WriteLine("1- [red door]");
+                    room = Console.ReadLine();
+                }
+                
                 game.Add(new blackroom());
                 Console.WriteLine("2- [black door]");
                 game.Add(new greenroom());
@@ -94,10 +97,6 @@ namespace NarrativeProject
                 Console.WriteLine("5- [blue door]");
                 Console.WriteLine("6- [Locked door]");
 
-
-                Thread.Sleep(3000);
-                Console.Clear();
-
                 Console.WriteLine("Which door would you like to go in?");
                 room = Console.ReadLine().ToLower();
 
@@ -107,9 +106,13 @@ namespace NarrativeProject
                     continue;
                 }
 
-
-
-
+                switch (room)
+                {
+                    
+                    default:
+                        Console.WriteLine("Invalid room choice. Please choose a valid room.");
+                        break;
+                }
                 while (!game.IsGameOver())
                 {
                     Console.WriteLine("--");
@@ -121,10 +124,16 @@ namespace NarrativeProject
 
                 Console.WriteLine("END");
                 Console.ReadLine();
+            
+            }
 
-
+        }
+        static void Recievechoice() 
+        {
+               }
             }
         }
-    }
-    }
+    
+
+
     
