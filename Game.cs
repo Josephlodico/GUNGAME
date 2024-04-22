@@ -31,7 +31,7 @@ namespace NarrativeProject
 
         internal void ReceiveChoice(string choice)
         {
-            currentRoom.ReceiveChoice(choice);
+            currentRoom.ReceiveTask(choice);
             CheckTransition();
         }
         // : is a Type Constraint
