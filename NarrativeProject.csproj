@@ -47,9 +47,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Room.cs" />
-    <Compile Include="Rooms\AtticRoom.cs" />
-    <Compile Include="Rooms\Bathroom.cs" />
-    <Compile Include="Rooms\Bedroom.cs" />
+    <Compile Include="Rooms\blueroom.cs" />
+    <Compile Include="Rooms\pinkroom.cs" />
+    <Compile Include="Rooms\redroom.cs" />
+    <Compile Include="Rooms\greenroom.cs" />
+    <Compile Include="Rooms\blackroom.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

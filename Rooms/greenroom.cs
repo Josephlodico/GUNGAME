@@ -2,28 +2,25 @@
 
 namespace NarrativeProject.Rooms
 {
-    internal class Bathroom : Room
+    internal class greenroom : Room
     {
 
         internal override string CreateDescription() =>
-@"In your bathroom, the [bath] is filled with hot water.
-The [mirror] in front of you reflects your depressed face.
-You can return to your [bedroom].
-";
+@" ";
 
         internal override void ReceiveChoice(string choice)
         {
             switch (choice)
             {
-                case "bath":
-                    Console.WriteLine("You relax in the bath.");
+                case "1":
+                    Console.WriteLine("");
                     break;
-                case "mirror":
-                    Console.WriteLine("You see the numbers 2024 written on the fog on your mirror.");
+                case "2":
+                    Console.WriteLine("");
                     break;
-                case "bedroom":
-                    Console.WriteLine("You return to your bedroom.");
-                    Game.Transition<Bedroom>();
+                case "3":
+                    Console.WriteLine("");
+                    Game.Transition<blackroom>();
                     break;
                 default:
                     Console.WriteLine("Invalid command.");
