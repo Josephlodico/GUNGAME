@@ -77,23 +77,21 @@ namespace NarrativeProject
 
             while (completedRooms.Count < 5) // Ensure loop runs until 5 rooms are completed
             {
-                Console.WriteLine("You see 6 doors in front of you, though one is locked. Once you complete a task in 5 rooms, the last door will open. Type the color room door you want");
+                Console.WriteLine("You see 6 doors in front of you, though one is locked. Once you complete a task in 5 rooms, " +
+                    "the last door will open, enter the red room first to start");
 
                 var game = new Game();
 
                 game.Add(new redroom());
-                {
-                    Console.WriteLine("1- [red door]");
-                    room = Console.ReadLine();
-                }
-                
                 game.Add(new blackroom());
-                Console.WriteLine("2- [black door]");
                 game.Add(new greenroom());
-                Console.WriteLine("3- [green door]");
                 game.Add(new pinkroom());
-                Console.WriteLine("4- [pink door]");
                 game.Add(new blueroom());
+
+                Console.WriteLine("1- [red door]");
+                Console.WriteLine("2- [black door]");
+                Console.WriteLine("3- [green door]");
+                Console.WriteLine("4- [pink door]");
                 Console.WriteLine("5- [blue door]");
                 Console.WriteLine("6- [Locked door]");
 
@@ -105,34 +103,49 @@ namespace NarrativeProject
                     Console.WriteLine("You have already completed this room. Choose another one.");
                     continue;
                 }
+                
 
-                switch (room)
+                if (room == "red")
                 {
-                    
-                    default:
-                        Console.WriteLine("Invalid room choice. Please choose a valid room.");
-                        break;
+                    // enter redroom
                 }
-                while (!game.IsGameOver())
+                else if (room == "black")
                 {
-                    Console.WriteLine("--");
-                    Console.WriteLine(game.CurrentRoomDescription);
-                    string choice = Console.ReadLine().ToLower() ?? "";
-                    Console.Clear();
-                    game.ReceiveChoice(choice);
+                    // enter blackroom
+                }
+                else if (room == "green")
+                {
+                    // enter greenroom
+                }
+                else if (room == "pink")
+                {
+                    // enter pinkroom
+                }
+                else if (room == "blue")
+                {
+                    // enter blueroom
+                }
+                else
+                {
+                    Console.WriteLine("invalid input. please try again.");
                 }
 
-                Console.WriteLine("END");
-                Console.ReadLine();
+
+
+            }
+
+
+
+
+        }
+
+    }
+}
+        
+        
+               
             
-            }
-
-        }
-        static void Recievechoice() 
-        {
-               }
-            }
-        }
+        
     
 
 
