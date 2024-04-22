@@ -3,20 +3,21 @@ using static NarrativeProject.program;
 using static System.Collections.Specialized.BitVector32;
 using System.Threading;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace NarrativeProject.Rooms
 {
 
     internal class redroom : Room
     {
-
+        
 
         internal override string CreateDescription() =>
     @" You entered the red door,In front of you, you see a weird looking monster!    ";
 
         internal override void ReceiveTask(string choice)
-        {
 
+        {
             int action;
             int playerHP = 100;
             int[] RandomDamage = { 28, 32, 12, 44, 50, 24 }; // This is for the Gun damage
@@ -52,12 +53,21 @@ namespace NarrativeProject.Rooms
                         // Add completed room to the list
                     }
 
-
-
-
+                    break;
                 }
+
             }
         }
+
+
+
+
+
+
     }
 }
+    
+
+
+
 
