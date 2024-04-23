@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace NarrativeProject.Rooms
 {
+    
     internal class pinkroom : Room
     {
+        
         internal override string CreateDescription() =>
 @" ";
-        internal override void ReceiveChoice(string choice)
+        internal override void ReceiveTask(string choice)
         {
             switch (choice)
             {
