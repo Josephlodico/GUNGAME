@@ -10,9 +10,20 @@ using System.Xml.Serialization;
 //project name GUNGAME
 namespace NarrativeProject
 {
-        internal class Program
+
+    //FOR HANDING IN TMR, WERE GONNA GET SAVE SYSTEM + FOR/FOR EACH LOOPS ALL GOOD :) :) :)
+
+    internal class Program
+    {
+        [Serializable]
+        public class GameState
         {
-            public enum RoomType
+            public int Bullets { get; set; }
+            public int PlayerHP { get; set; }
+            public List<string> CompletedRooms { get; set; }
+        }
+
+        public enum RoomType
             {
                 Red,
                 Black,
@@ -46,6 +57,10 @@ namespace NarrativeProject
             {
                 public int enemyHP = 80;
             }
+            class ShadowPL : Enemy
+        {
+           public int enemyHP = 200;
+        }
             class blob : Enemy
             {
                 public int enemyHP = 70;
@@ -79,15 +94,12 @@ namespace NarrativeProject
                     medkit.UseMedkit(ref playerHP);
                 }
             }
-            //public void UseAmmo(ref int playerBullets)
-            //{
-            //    playerBullets += Bullets;
-            //    Console.WriteLine()
-            //}
+            
 
             static void Main(string[] args)
             {
-                var game = new Game();
+            
+            var game = new Game();
                 game.Add(new redroom());
                 game.Add(new blackroom());
                 game.Add(new greenroom());
@@ -99,34 +111,29 @@ namespace NarrativeProject
                 int action;
                 int bullets = 250;
                 int playerHP = 200;
-
+                
                 //Medkit medkit = new Medkit();
                 //List<string> inventory = new List<string>() { "medkit", "ammo" }; 
-                int shadowplayer = playerHP;
                 Stopwatch stopwatch = new Stopwatch();
                 List<string> completedRooms = new List<string>();
                 string room;
+
             { 
-            // THIS DOES not work
-            //if (playerHP == 0)
-            //{
-            //    Console.WriteLine("you died Game over.");
-                
-            //}
-            //if (bullets == 0)
-            //{
-            //    Console.WriteLine("you ran out of bullets, Game over");
-                
+            
             }
 
 
-
-            int[] RandomDamage = { 28, 35, 12, 30, 50, 25 }; // This is for the Gun damage
+            
+                int[] RandomDamage = { 21, 31, 22, 30, 19, 25, 71, 37, 27, 24, 55, 100, 22, 26, 100 }; // This is for the Gun damage
                 Random random = new Random();
 
                 int[] EnemyDamage = { 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 };
 
                 Console.WriteLine("Welcome to Gun Game! Press Enter to start");
+
+
+
+            Console.WriteLine(" +--^----------,--------,-----,--------^-,\r\n | |||||||||   `--------'     |          O\r\n `+---------------------------^----------|\r\n   `\\_,---------,---------,--------------'\r\n     / XXXXXX /'|       /'\r\n    / XXXXXX /  `\\    /'\r\n   / XXXXXX /`-------'\r\n  / XXXXXX /\r\n / XXXXXX /\r\n(________(                \r\n `------'    ");
                 Console.ReadLine();
                 Console.Clear();
 
@@ -161,11 +168,11 @@ namespace NarrativeProject
                 Console.WriteLine("You have " + bullets + " bullets");
                 Console.WriteLine("You have " + playerHP + " hit points available");
 
-                Thread.Sleep(1000);
+                Thread.Sleep(3500);
                 Console.Clear();
 
 
-                while (completedRooms.Count < 61) // Change '>' to '<' to ensure loop runs until 5 rooms are completed
+                while (completedRooms.Count < 6) // Change '>' to '<' to ensure loop runs until 5 rooms are completed
                 {
 
                     Console.WriteLine("You see 6 doors in front of you, though the 6th door is Locked. ");
@@ -174,12 +181,12 @@ namespace NarrativeProject
 
                     Console.WriteLine("1- [red door]");
                     Console.WriteLine("2- [black door]");
-                    Console.WriteLine("3- [Green door]");
-                    Console.WriteLine("4- [Pink door]");
+                    Console.WriteLine("3- [green door]");
+                    Console.WriteLine("4- [pink door]");
                     Console.WriteLine("5- [blue door]");
                     Console.WriteLine("6- [Locked door]");
                     Console.WriteLine("7- [gold door(inventory)]");
-
+                    Console.WriteLine("Save");
 
 
 
@@ -248,14 +255,7 @@ namespace NarrativeProject
                                     Console.WriteLine("\n\n\tYou defeated the goblin!\n");
                                     Console.WriteLine("===============================================");
                                     Console.WriteLine("\nhere comes the Blob! NOW");
-
-
-
                                 }
-
-
-
-
                             }
                             while (blob.enemyHP > 0)
                             {
@@ -363,7 +363,7 @@ namespace NarrativeProject
                             Console.WriteLine("You only have 15 seconds to type this code in or you lose!");
                             Console.WriteLine("241-124-7645-653");
 
-                            string codeInput = Console.ReadLine(); // Prompt the player for input
+                            string codeInput = Console.ReadLine(); 
                             stopwatch.Stop();
 
                             // Check if the player entered the correct code and did so within the time limit
@@ -382,9 +382,9 @@ namespace NarrativeProject
 
                             stopwatch.Reset();
                             break;
-                        //WHEN I WRITE BLACK ITS NOT WORKINGGGG
+                       
 
-                        case "green": //GREEN ROOM!!!         //HAVE TO DO THIS LIST THING WHERE IT ADDS IT OR TAKES IT OUT IDKKK
+                        case "green":         
                             int awnser;
 
                             Console.WriteLine("You Enter the green room...");
@@ -392,7 +392,7 @@ namespace NarrativeProject
                             Thread.Sleep(2000);
                             Console.Clear();
 
-                            Console.WriteLine(" you retart the room if you get it wrong");
+                            Console.WriteLine(" you restart the room if you get it wrong");
                             Console.WriteLine("1- True or false: Lasalle video Game DEC is 2 years");
                             Console.WriteLine("Type 1 for True, 2 for False..");
 
@@ -410,7 +410,7 @@ namespace NarrativeProject
                                 Thread.Sleep(2000);
                                 Console.Clear();
 
-                                Console.WriteLine("1- True or false: The Sentinels E-Sports Team won Masters Madrid");
+                                Console.WriteLine("1- True or false: The mona lisa was painted by leanardo Da vinci ");
                                 Console.WriteLine("Type 1 for True, 2 for False..");
                                 awnser = Convert.ToInt32(Console.ReadLine());
 
@@ -439,9 +439,9 @@ namespace NarrativeProject
                             Console.WriteLine("You enter the Pink Room...");
                             Console.WriteLine("In this room, youll be shown 2 almost identical images  ");
                             Console.WriteLine("Your job is to be able to tell WHATS the difference. Lets start");
-                            Thread.Sleep(1000);
+                            Thread.Sleep(4000);
                             Console.Clear();
-                            Thread.Sleep(2000);
+                            Thread.Sleep(2500);
 
 
                             Console.WriteLine("    0              0                         !                    0                 0\r\n                                             !       \r\n            I                                !\r\n[                      ]                     !                             I\r\n[                      ]                     !\r\n[----------------------]                     !                [                        ]\r\n                                             !                [                        ]\r\n                                             !                [------------------------]\r\n                                             !\r\n                                             !\r\n                                             !\r\n                                             !\r\n                                             !\r\n                                             !\r\n                                             !\r\n                                             !\r\n                                             !\r\n\r\n");
@@ -470,58 +470,117 @@ namespace NarrativeProject
 
                             }
                             break;
-                        case "blue":
-                            Console.Clear();
-                            Console.WriteLine("You enter the blue room...");
-                            Console.WriteLine("In the room, you see an exact copy.. of you! He has the same HP and Attack power, Defeat Him!!");
+                    case "blue":
+                        Console.Clear();
+                        Console.WriteLine("You enter the blue room...");
+                        Console.WriteLine("In the room, you see an exact copy.. of you! He has the same HP and Attack power, Defeat Him!!");
+                        Console.WriteLine("           __.......__\r\n            .-:::::::::::::-.\r\n          .:::''':::::::''':::.\r\n        .:::'     `:::'     `:::. \r\n   .'\\  ::'   ^^^  `:'  ^^^   '::  /`.\r\n  :   \\ ::   _.__       __._   :: /   ;\r\n :     \\`: .' ___\\     /___ `. :'/     ; \r\n:       /\\   (_|_)\\   /(_|_)   /\\       ;\r\n:      / .\\   __.' ) ( `.__   /. \\      ;\r\n:      \\ (        {   }        ) /      ; \r\n :      `-(     .  ^\"^  .     )-'      ;\r\n  `.       \\  .'<`-._.-'>'.  /       .'\r\n    `.      \\    \\;`.';/    /      .'\r\n jgs  `._    `-._       _.-'    _.'\r\n       .'`-.__ .'`-._.-'`. __.-'`.\r\n     .'       `.         .'       `.\r\n   .'           `-.   .-'           `.");
+                        Thread.Sleep(3000);
+                        Console.Clear();
+                        ShadowPL ShadowPL = new ShadowPL();
 
-                            Thread.Sleep(2000);
-                            Console.Clear();
-                            Goblin ShadowPL = new Goblin();
+                        while (ShadowPL.enemyHP > 0 && playerHP > 0)
+                        {
+                            Console.WriteLine("Your Medkit activated! ");
+                            Console.WriteLine("Would you like to attack?");
+                            Console.WriteLine("1- Yes");
+                            Console.WriteLine("2- No");
+                            Console.WriteLine("3- Medkit");
+                            action = Convert.ToInt32(Console.ReadLine());
 
-
-                            while (ShadowPL.enemyHP > 0)
+                            if (action == 1)
                             {
-                                Console.WriteLine("Would you like to attack?");
-                                Console.WriteLine("1- Yes");
-                                Console.WriteLine("2- No");
-                                action = Convert.ToInt32(Console.ReadLine());
+                                Console.Clear();
+                                int randomIndex = random.Next(RandomDamage.Length);
+                                int randomDamage = RandomDamage[randomIndex];
+                                Console.WriteLine("You shoot at the SHADOW! You did " + randomDamage + " damage to the SHADOW.");
+                                ShadowPL.enemyHP -= randomDamage;
+                                Console.WriteLine("The enemy now has " + ShadowPL.enemyHP + " hit points left!");
+                                Thread.Sleep(3000);
+                                Console.Clear();
+                                
 
-                                if (action == 1)
+                                if (ShadowPL.enemyHP <= 0)
                                 {
-                                    Console.Clear();
-                                    int randomIndex = random.Next(RandomDamage.Length);
-                                    int randomDamage = RandomDamage[randomIndex];
-                                    Console.WriteLine("You shoot at the SHADOW! You did " + randomDamage + " damage to the SHADOW.");
-                                    ShadowPL.enemyHP -= randomDamage;
-                                    Console.WriteLine("The enemy now has " + ShadowPL.enemyHP + " hit points left!");
-                                    Thread.Sleep(3000);
-                                    Console.WriteLine("The SHADOW Attacks You, he does " + randomDamage + " To You!");
-                                    playerHP = playerHP - randomDamage;
+                                    Console.WriteLine("You defeated SHADOW!");
+                                    Console.WriteLine("YOU HAVE COMPLETED THE BLUE ROOM!");
+                                    Console.WriteLine("===============================================");
+                                    completedRooms.Add("blue");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("The SHADOW Attacks You, he does " + EnemyDamage[random.Next(EnemyDamage.Length)] + " To You!");
+                                    playerHP -= EnemyDamage[random.Next(EnemyDamage.Length)];
                                     Console.WriteLine("You Now have " + playerHP + " Hp Left!");
-
-
-                                    if (ShadowPL.enemyHP <= 0)
-                                    {
-                                        Console.WriteLine("You defeated SHADOW!");
-                                        Console.WriteLine("YOU HAVE COMPLETED THE BLUE ROOM!");
-                                        Console.WriteLine("===============================================");
-                                        completedRooms.Add("blue");
-                                    }
                                 }
                             }
-                            break;
-                        case "Locked":
-                            Console.WriteLine("YOU ENTERED THE LOCKED ROOM, ");
-                            Console.WriteLine(" CONGRATULATIONS YOU ARE FREE");
+                            if (action == 3)
+                            {
+                                playerHP = playerHP + 45;
+                                Console.WriteLine("You healed yourself for 45! you now have " + playerHP + " Health!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Wait, He's FAST!");
+                                Console.WriteLine("The SHADOW Attacks You, he does " + EnemyDamage[random.Next(EnemyDamage.Length)] + " To You!");
+                                playerHP -= EnemyDamage[random.Next(EnemyDamage.Length)];
+                                Console.WriteLine("You Now have " + playerHP + " Hp Left!");
+                            }
+
+                            if (playerHP <= 0)
+                            {
+                                Console.WriteLine("You died! Game over.");
+                                break;
+                            }
+                        }
                         break;
+
+                    case "Save":
+
+                        string path = "savefile.txt"; 
+
+                        if (File.Exists(path))
+                        {
+                            // Open the text file using a stream reader.
+                            using (StreamReader sr = new StreamReader(path))
+                            {
+                                // Read the stream to a string, and write the string to the console.
+                                string line = sr.ReadToEnd();
+                                Console.WriteLine(line);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("The file does not exist.");
+                        }
+
+                        break;
+
+                        case "locked":
+
+
+                        if (completedRooms.Count == 5)
+                        {
+                            Console.WriteLine("You have the Key!!");
+                            Console.WriteLine(" .--.\r\n              /.-. '----------.\r\n              \\'-' .--\"--\"\"-\"-'\r\n           jgs '--'");
+                            Console.WriteLine("Congratulations! You have completed all the rooms!");
+                            Console.WriteLine("You were able to escape, nice!!!");
+                            Console.WriteLine("                                 _       \r\n                                | |      \r\n  ___ ___  _ __   __ _ _ __ __ _| |_ ___ \r\n / __/ _ \\| '_ \\ / _` | '__/ _` | __/ __|\r\n| (_| (_) | | | | (_| | | | (_| | |_\\__ \\\r\n \\___\\___/|_| |_|\\__, |_|  \\__,_|\\__|___/\r\n                  __/ |                  \r\n                 |___/                   ");
+
+
+
+                        }
+                        
+                        break;
+                        
+
                         case "gold":
                         Console.WriteLine(" you see a Chest");
                         if (action == 1)
                         {
                             Console.WriteLine("");
                             
-                            Console.WriteLine("You picked up the gun.");
+                            Console.WriteLine("You found a medkit!");
                             break;
                         }
 
@@ -532,7 +591,7 @@ namespace NarrativeProject
                         }
                             break;
                         default:
-                            Console.WriteLine("Invalid room choice. Please choose again.");
+                            Console.WriteLine("Invalid action. Please choose again.");
                         break;
                     }
 
@@ -546,48 +605,8 @@ namespace NarrativeProject
                         Console.WriteLine("you ran out of bullets, Game over");
                         break;
                     }
-
-
-                    // OTHER ROOMS HERE CASES
-
-
                 }
-
-
                 Console.WriteLine("Congratulations! You have completed all the rooms!");
-                Console.WriteLine("Now, the locked door is open. You can enter locked proceed further.");
-
-                // Add the logic for the locked door here
             }
         }
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-        
-        
-               
-            
-        
-    
-
-
-    
