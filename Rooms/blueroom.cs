@@ -8,10 +8,11 @@ namespace NarrativeProject.Rooms
 {
     internal class blueroom : Room
     {
+        
         internal override string CreateDescription() =>
       @"";
 
-        internal override void ReceiveChoice(string choice)
+        internal override void ReceiveTask(string choice)
         {
             switch (choice)
             {
@@ -23,7 +24,7 @@ namespace NarrativeProject.Rooms
                     break;
                 case "3":
                     Console.WriteLine("");
-                    Game.Transition<blackroom>();
+                    
                     break;
                 default:
                     Console.WriteLine("Invalid command.");
@@ -32,7 +33,7 @@ namespace NarrativeProject.Rooms
         }
             
                 
-        }
-
     }
+
 }
+
