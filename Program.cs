@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
@@ -105,10 +106,22 @@ namespace NarrativeProject
                 Stopwatch stopwatch = new Stopwatch();
                 List<string> completedRooms = new List<string>();
                 string room;
+            { 
+            // THIS DOES not work
+            //if (playerHP == 0)
+            //{
+            //    Console.WriteLine("you died Game over.");
+                
+            //}
+            //if (bullets == 0)
+            //{
+            //    Console.WriteLine("you ran out of bullets, Game over");
+                
+            }
 
 
-            int[] PlayerDamage = {23};
-                int[] RandomDamage = { 28, 35, 12, 30, 50, 25 }; // This is for the Gun damage
+
+            int[] RandomDamage = { 28, 35, 12, 30, 50, 25 }; // This is for the Gun damage
                 Random random = new Random();
 
                 int[] EnemyDamage = { 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 };
@@ -117,29 +130,31 @@ namespace NarrativeProject
                 Console.ReadLine();
                 Console.Clear();
 
-                while (true)
+            while (true)
+            {
+                Console.WriteLine("You wake up in a room confused. In front of you there's a gun,Do you pick it up?");
+                Console.WriteLine("1- Yes");
+                Console.WriteLine("2- No");
+
+                action = Convert.ToInt32(Console.ReadLine());
+
+                if (action == 1)
                 {
-                    Console.WriteLine("You wake up in a room confused. In front of you there's a gun,Do you pick it up?");
-                    Console.WriteLine("1- Yes");
-                    Console.WriteLine("2- No");
-
-                    action = Convert.ToInt32(Console.ReadLine());
-
-                    if (action == 1)
-                    {
-                        Console.WriteLine("You picked up the gun.");
-                        Thread.Sleep(1000);
-                        Console.Clear();
-                        Console.WriteLine("You picked up the gun.");
-                        break;
-                    }
-
-                    if (action == 2)
-                    {
-                        Console.WriteLine("You should really pick it up...");
-                        Console.Clear();
-                    }
+                    Console.WriteLine("You picked up the gun.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    break;
+                    
                 }
+                else if (action == 2)
+                {
+                    Console.WriteLine("You should REALLY pick it up...");
+                    Console.Clear();
+
+                   
+
+                }
+            }
 
                 Console.Clear();
                 Console.WriteLine("You notice how many bullets you have in total");
@@ -150,12 +165,12 @@ namespace NarrativeProject
                 Console.Clear();
 
 
-                while (completedRooms.Count < 5) // Change '>' to '<' to ensure loop runs until 5 rooms are completed
+                while (completedRooms.Count < 61) // Change '>' to '<' to ensure loop runs until 5 rooms are completed
                 {
 
                     Console.WriteLine("You see 6 doors in front of you, though the 6th door is Locked. ");
-                    Console.WriteLine("Once you complete the task in ALL the 5 rooms, the Locked door will open. ");
-                    Console.WriteLine("Now Type the colored door you want to Enter to START or write gold to access your inventory");
+                    Console.WriteLine("Once you complete the TASK in ALL the 5 rooms, the Locked door will open. ");
+                    Console.WriteLine("Now Type the room color to  START or write gold to access your inventory");
 
                     Console.WriteLine("1- [red door]");
                     Console.WriteLine("2- [black door]");
@@ -168,14 +183,14 @@ namespace NarrativeProject
 
 
 
-
-                    Console.WriteLine("Which door would you like to go in?");
+                Console.WriteLine("Which door would you like to go in?");
+                  Console.WriteLine("===============================================");
 
                     room = Console.ReadLine().ToLower();
 
                     if (completedRooms.Contains(room))
                     {
-                        Console.WriteLine("You have already completed this room. Choose another one.");
+                        Console.WriteLine("YOU HAVE ALREADY COMPLETED THIS ROOM. PLEASE CHOOSE ANOTHER ONE.");
                         continue;
                     }
 
@@ -206,7 +221,7 @@ namespace NarrativeProject
                                     Console.Clear();
                                     int randomIndex = random.Next(RandomDamage.Length);
                                     int randomDamage = RandomDamage[randomIndex];
-                                    Console.WriteLine("You shot at the goblin! You did " + PlayerDamage + " damage to the goblin.");
+                                    Console.WriteLine("You shot at the goblin! You did " + randomDamage + " damage to the goblin.");
                                     bullets = bullets - 20;
                                     goblin.enemyHP -= randomDamage;
                                     Console.WriteLine("The enemy now has " + goblin.enemyHP + " hit points left!");
@@ -224,7 +239,7 @@ namespace NarrativeProject
                                 int enemyRandomDamage = EnemyDamage[enemyRandomIndex];
                                 Console.WriteLine("The goblin attacks you and does " + enemyRandomDamage + " damage!");
                                 playerHP = playerHP - enemyRandomDamage;
-                            Console.WriteLine("the Goblin now has " + goblin.enemyHP + " HP left ");
+                            Console.WriteLine("the Goblin now has " + goblin.enemyHP  + " HP left ");
                             Console.WriteLine("===============================================");
                             Console.WriteLine("and NOW you have " + playerHP + " HP left ");
                                 Console.WriteLine("and  " + bullets + " bullets left ");
@@ -256,8 +271,8 @@ namespace NarrativeProject
                                     int randomDamage = RandomDamage[randomIndex];
                                     Console.WriteLine("You shoot at the blob! You did " + randomDamage + " damage to the blob.");
                                     bullets = bullets - 20;
-                                    goblin.enemyHP -= randomDamage;
-                                    Console.WriteLine("The enemy now has " + goblin.enemyHP + " hit points left!");
+                                    blob.enemyHP -= randomDamage;
+                                    Console.WriteLine("The enemy now has " + blob.enemyHP + " hit points left!");
                                     Console.Clear();
                                 }
                                 else
@@ -273,12 +288,12 @@ namespace NarrativeProject
                                 int enemyRandomDamage = EnemyDamage[enemyRandomIndex];
                                 Console.WriteLine("The blob attacks you and does " + enemyRandomDamage + " damage!");
                                 playerHP = playerHP - enemyRandomDamage;
-                            Console.WriteLine(" The blob now has" + blob.enemyHP + " HP left ");
+                            Console.WriteLine(" The blob now has " + blob.enemyHP  + " HP left ");
                             Console.WriteLine("===============================================");
                             Console.WriteLine("and NOW you have " + playerHP + " HP left ");
                                 Console.WriteLine(" and  " + bullets + " bullets left ");
 
-                                if (goblin.enemyHP <= 0)
+                                if (blob.enemyHP <= 0)
                                 {
                                     Console.WriteLine("\n\n\tYou defeated the blob!\n");
                                     Console.WriteLine("\nhere comes the Goomba! NOW");
@@ -303,8 +318,8 @@ namespace NarrativeProject
                                     int randomDamage = RandomDamage[randomIndex];
                                     Console.WriteLine("You shoot at the goomba! You did " + randomDamage + " damage to the goomba.");
                                     bullets = bullets - 20;
-                                    goblin.enemyHP -= randomDamage;
-                                    Console.WriteLine("The enemy now has " + goblin.enemyHP + " hit points left!");
+                                    goomba.enemyHP -= randomDamage;
+                                    Console.WriteLine("The enemy now has " + goomba.enemyHP  + " hit points left!");
                                     Console.Clear();
                                 }
                                 else
@@ -320,12 +335,12 @@ namespace NarrativeProject
                                 int enemyRandomDamage = EnemyDamage[enemyRandomIndex];
                                 Console.WriteLine("The goomba attacks you and does " + enemyRandomDamage + " damage!");
                                 playerHP = playerHP - enemyRandomDamage;
-                            Console.WriteLine(" The Goomba now has" + blob.enemyHP + " HP left ");
+                            Console.WriteLine(" The Goomba now has " + goomba.enemyHP  + " HP left ");
                             Console.WriteLine("===============================================");
                             Console.WriteLine("You NOW have " + playerHP + " HP left ");
                                 Console.WriteLine("and " + bullets + " bullets left ");
 
-                                if (goblin.enemyHP <= 0)
+                                if (goomba.enemyHP <= 0)
                                 {
                                     Console.WriteLine("\n\n\tYou defeated the Goomba! and you survived, GOOD WORK!\n");
                                     Console.WriteLine(" YOU COMPLETED THE RED ROOM!");
@@ -333,7 +348,9 @@ namespace NarrativeProject
                                     completedRooms.Add("red");
                                     break;
                                 }
-                            }
+                            
+
+                        }
 
 
 
@@ -438,8 +455,10 @@ namespace NarrativeProject
 
                             if (DrawAwnser == 1)
                             {
-                                Console.WriteLine("Correct! Youve cleared the Pink Room!");
-                                completedRooms.Add("pink");
+                                Console.WriteLine("Correct! ANSWER");
+                                Console.WriteLine("YOU HAVE COMPLETED THE PINK ROOM!");
+                            Console.WriteLine("===============================================");
+                            completedRooms.Add("pink");
                             }
                             if (DrawAwnser == 2)
                             {
@@ -485,26 +504,36 @@ namespace NarrativeProject
                                     if (ShadowPL.enemyHP <= 0)
                                     {
                                         Console.WriteLine("You defeated SHADOW!");
-                                        Console.WriteLine("You cleared the blue room!");
+                                        Console.WriteLine("YOU HAVE COMPLETED THE BLUE ROOM!");
+                                        Console.WriteLine("===============================================");
                                         completedRooms.Add("blue");
                                     }
                                 }
                             }
                             break;
-
-
-                        case "gold":
-                            Console.WriteLine(" you see a Chest");
-
-                            break;
-
                         case "Locked":
                             Console.WriteLine("YOU ENTERED THE LOCKED ROOM, ");
                             Console.WriteLine(" CONGRATULATIONS YOU ARE FREE");
+                        break;
+                        case "gold":
+                        Console.WriteLine(" you see a Chest");
+                        if (action == 1)
+                        {
+                            Console.WriteLine("");
+                            
+                            Console.WriteLine("You picked up the gun.");
+                            break;
+                        }
+
+                        if (action == 2)
+                        {
+                            Console.WriteLine("You should really pick it up...");
+                            Console.Clear();
+                        }
                             break;
                         default:
                             Console.WriteLine("Invalid room choice. Please choose again.");
-                            break;
+                        break;
                     }
 
                     if (playerHP <= 0)
