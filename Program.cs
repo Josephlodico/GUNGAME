@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Xml.Serialization;
 //project name GUNGAME
-//Made by Joseph, Anthony , Branden
+//Made by Joseph, Anthony
 //Date:2024-04-23
 //Description: using gitkraken and github and creating a game called GUNGAME.
 namespace NarrativeProject
@@ -20,14 +20,12 @@ namespace NarrativeProject
         public int bullets;
         // Add more properties as needed
     }
-
     public class SaveSystem
     {
         private static string savePath = "saveData.txt";
 
         public static void SaveGame(GameData data)
         {
-            
             // Serialize the game data
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream fileStream = File.Create(savePath);
@@ -53,23 +51,16 @@ namespace NarrativeProject
                 return null;
             }
         }
-
         internal class Program
         {
-
-
             private static bool medkitPickedUp = false;
             private static bool medkitUsed = false;
-
-
             public class GameState
             {
                 public int Bullets { get; set; }
                 public int PlayerHP { get; set; }
                 public List<string> CompletedRooms { get; set; }
             }
-
-
             public enum RoomType
             {
                 Red,
@@ -80,13 +71,11 @@ namespace NarrativeProject
                 Locked,
                 Gold,
             }
-
             public enum PlayerAction
             {
                 Yes = 1,
                 No = 2,
             }
-
             class Enemy
             {
                 public int monster = 0;
@@ -98,8 +87,6 @@ namespace NarrativeProject
                 }
 
             }
-
-
             class Goomba : Enemy
             {
                 public int enemyHP = 80;
@@ -117,7 +104,6 @@ namespace NarrativeProject
                 public int enemyHP = 60;
 
             }
-
             public class Monster
             {
 
@@ -148,16 +134,8 @@ namespace NarrativeProject
                     }
                 }
             }
-
-
-
             static void Main(string[] args)
             {
-
-
-                
-
-
                 medkitPickedUp = false;
 
                 //var game = new Game();
@@ -166,8 +144,6 @@ namespace NarrativeProject
                 //    game.Add(new greenroom());                    
                 //    game.Add(new pinkroom());
                 //    game.Add(new blueroom());
-
-
 
                 int action;
                 int bullets = 250;
@@ -178,9 +154,6 @@ namespace NarrativeProject
                 Stopwatch stopwatch = new Stopwatch();
                 List<string> completedRooms = new List<string>();
                 string room;
-
-
-
                 {
                     Console.WriteLine(" here is your saved progress");
 
@@ -194,7 +167,6 @@ namespace NarrativeProject
                     // Load the game
                     GameData loadedData = SaveSystem.LoadGame();
 
-                    
                     if (loadedData != null)
                     {
                         Console.WriteLine("Loaded Player Name: " + loadedData.bullets) ;
@@ -203,7 +175,6 @@ namespace NarrativeProject
 
                     Console.ReadLine();
                 }
-
 
                 int[] RandomDamage = { 21, 31, 22, 30, 19, 25, 71, 37, 27, 24, 55, 100, 22, 26, 100 }; // This is for the Gun damage
                 Random random = new Random();
@@ -252,11 +223,8 @@ namespace NarrativeProject
                 Thread.Sleep(2900);
                 Console.Clear();
 
-
                 while (completedRooms.Count < 5) // Change '>' to '<' to ensure loop runs until 5 rooms are completed
                 {
-
-                   
                     Console.WriteLine("===============================================");
                     Console.WriteLine("You see 6 doors in front of you, though the 6th door is Locked. ");
                     Console.WriteLine("Once you complete the TASK in ALL the 5 main rooms, the Locked door will open. ");
@@ -277,10 +245,6 @@ namespace NarrativeProject
                     Console.WriteLine("===============================================");
                     Console.WriteLine("7- [gold door(inventory)]");
                     Console.WriteLine("===============================================");
-                   
-
-
-
                     Console.WriteLine("Which door would you like to go in?");
                     Console.WriteLine("===============================================");
                     
@@ -293,17 +257,12 @@ namespace NarrativeProject
                         continue;
 
                     }
-
-
-
-
                     switch (room.ToLower())
                     {
                         case "red":
                             Console.Clear();
                             Console.WriteLine("You entered the red door.");
                             Console.WriteLine("In front of you, you see a weird looking goblin!");
-
 
                             Goblin goblin = new Goblin();
                             blob blob = new blob();
