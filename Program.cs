@@ -220,7 +220,7 @@ namespace NarrativeProject
                 Console.WriteLine("You have " + playerHP + " hit points available");
                 Console.WriteLine("===============================================");
 
-                Thread.Sleep(2900);
+                Thread.Sleep(4000);
                 Console.Clear();
 
                 while (completedRooms.Count < 5) // Change '>' to '<' to ensure loop runs until 5 rooms are completed
