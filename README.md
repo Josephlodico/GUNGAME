@@ -1,4 +1,5 @@
 # 🔫 GUNGAME
+<img width="1857" height="781" alt="GunGamePic" src="https://github.com/user-attachments/assets/e072bd59-732e-45f8-a6ef-b05fec63018e" />
 
 A text-based console adventure game built in C# where you fight monsters, solve puzzles, and escape through a series of challenging rooms.
 
