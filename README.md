@@ -42,8 +42,7 @@ GUNGAME is a turn-based console RPG where you must clear **5 unique rooms** — 
 
 ## 🛠️ Built With
 
-- **C#** / **.NET Framework 4.8**
-- Visual Studio 2022
+- **C#** / **.NET 9**
 
 ---
 
@@ -51,30 +50,36 @@ GUNGAME is a turn-based console RPG where you must clear **5 unique rooms** — 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/NarrativeProject.git
+   git clone https://github.com/Josephlodico/GUNGAME.git
    ```
-2. Open `NarrativeProject.sln` in Visual Studio
-3. Build and run the project (`F5` or `Ctrl+F5`)
+2. Run the project from the `GunGame` directory:
+   ```bash
+   dotnet run --project GunGame.csproj
+   ```
+   Or open `GunGame.sln` in Visual Studio and press `F5` / `Ctrl+F5`.
 
-> Requires .NET Framework 4.8
+> Requires the .NET 9 SDK
 
 ---
 
 ## 📁 Project Structure
 
 ```
-NarrativeProject/
-├── Program.cs          # Main game loop and room logic
-├── Game.cs             # Room management and transitions
-├── Room.cs             # Abstract base class for rooms
-├── Rooms/
-│   ├── redroom.cs
-│   ├── blackroom.cs
-│   ├── greenroom.cs
-│   ├── pinkroom.cs
-│   └── blueroom.cs
-└── Properties/
-    └── AssemblyInfo.cs
+GunGame/
+├── Program.cs           # Entry point
+├── Core/
+│   ├── GameEngine.cs    # Main game loop and door/room selection
+│   ├── GameContext.cs   # Shared state passed to each room
+│   ├── GameData.cs      # Save data model
+│   ├── Player.cs        # Player HP, bullets, inventory
+│   ├── Room.cs          # Abstract base class for rooms
+│   └── SaveSystem.cs    # Save/load game progress
+└── Rooms/
+    ├── RedRoom.cs
+    ├── BlackRoom.cs
+    ├── GreenRoom.cs
+    ├── PinkRoom.cs
+    └── BlueRoom.cs
 ```
 
 ---
