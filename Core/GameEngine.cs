@@ -85,7 +85,9 @@ namespace GunGame.Core
 
             var context = new GameContext(player, random, completedRooms);
 
-            while (completedRooms.Count < 5)
+            bool escaped = false;
+
+            while (!escaped)
             {
                 Console.WriteLine("===============================================");
                 Console.WriteLine("You see 6 doors in front of you, though the 6th door is Locked. ");
@@ -129,8 +131,9 @@ namespace GunGame.Core
                     {
                         Console.WriteLine(" .--.\r\n              /.-. '----------.\r\n              \\ '-' .--\"--\"\"-\"-'");
                         Console.WriteLine("Congratulations! You now have the key to escape,");
+                        escaped = true;
                     }
-                    else if (completedRooms.Count < 5)
+                    else
                     {
                         Console.WriteLine("The Door is locked");
                     }
@@ -153,10 +156,21 @@ namespace GunGame.Core
                     Console.WriteLine("Invalid action. Please choose again.");
                 }
 
+                if (escaped)
+                {
+                    break;
+                }
+
                 if (player.Bullets <= 0)
                 {
                     Console.WriteLine("you ran out of bullets, Game over");
-                    break;
+                    return;
+                }
+
+                if (player.HP <= 0)
+                {
+                    Console.WriteLine("You have died. Game over.");
+                    return;
                 }
             }
             Console.WriteLine("Congratulations! You have completed all the rooms!");
