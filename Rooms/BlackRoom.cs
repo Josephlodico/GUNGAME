@@ -8,6 +8,7 @@ namespace GunGame.Rooms
     {
         public override void Play(GameContext context)
         {
+            var player = context.Player;
             string[] codes = { "241-124-7645-653" };
             var stopwatch = new Stopwatch();
 
@@ -31,19 +32,20 @@ namespace GunGame.Rooms
                     Console.WriteLine("Code entered successfully within the time limit! ");
                     Console.WriteLine("YOU HAVE COMPLETED   THE BLACK ROOM!");
                     Console.WriteLine("===============================================");
+
+                    if (!context.CompletedRooms.Contains("black"))
+                    {
+                        context.CompletedRooms.Add("black");
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Sorry, you either entered the wrong code or took too long. You failed to complete the black room.");
-                    break;
+                    player.HP = 0;
+                    return;
                 }
 
                 stopwatch.Reset();
-            }
-
-            if (context.CompletedRooms != null && !context.CompletedRooms.Contains("black"))
-            {
-                context.CompletedRooms.Add("black"); // Add completed room to the list
             }
         }
     }

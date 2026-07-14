@@ -1,6 +1,6 @@
 //project name GUNGAME
 //Made by Joseph, Anthony
-//Date:2024-04-23
+//Date:2024-04-23         Updated: 2026-07-14
 //Description: using gitkraken and github and creating a game called GUNGAME.
 using GunGame.Core;
 
