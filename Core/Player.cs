@@ -12,14 +12,9 @@ namespace GunGame.Core
         public bool MedkitPickedUp { get; set; }
         public bool MedkitUsed { get; set; }
 
-        public int RollGunDamage(Random random)
-        {
-            return GunDamage[random.Next(GunDamage.Length)];
-        }
-
         public int Shoot(Random random)
         {
-            int damage = RollGunDamage(random);
+            int damage = GunDamage[random.Next(GunDamage.Length)];
             Bullets -= 20;
             return damage;
         }

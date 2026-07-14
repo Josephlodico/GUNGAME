@@ -43,7 +43,7 @@ namespace GunGame.Rooms
                 if (userAction == 1)
                 {
                     Console.Clear();
-                    int randomDamage = player.RollGunDamage(random);
+                    int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shoot at the SHADOW! You did " + randomDamage + " damage to the SHADOW.");
                     shadowClone.HP -= randomDamage;
                     Console.WriteLine("The enemy now has " + shadowClone.HP + " hit points left!");
@@ -59,8 +59,9 @@ namespace GunGame.Rooms
                     }
                     else
                     {
-                        Console.WriteLine("The SHADOW Attacks You, he does " + player.RollEnemyDamage(random) + " To You!");
-                        player.HP -= player.RollEnemyDamage(random);
+                        int enemyDamage = player.RollEnemyDamage(random);
+                        Console.WriteLine("The SHADOW Attacks You, he does " + enemyDamage + " To You!");
+                        player.HP -= enemyDamage;
                         Console.WriteLine("You Now have " + player.HP + " Hp Left!");
                     }
                 }
@@ -72,8 +73,9 @@ namespace GunGame.Rooms
                 {
                     Console.Clear();
                     Console.WriteLine("Wait, He's FAST!");
-                    Console.WriteLine("The SHADOW Attacks You, he does " + player.RollEnemyDamage(random) + " To You!");
-                    player.HP -= player.RollEnemyDamage(random);
+                    int enemyDamage = player.RollEnemyDamage(random);
+                    Console.WriteLine("The SHADOW Attacks You, he does " + enemyDamage + " To You!");
+                    player.HP -= enemyDamage;
                     Console.WriteLine("You Now have " + player.HP + " Hp Left!");
                 }
 
