@@ -46,7 +46,10 @@ namespace GunGame.Rooms
                     int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shoot at the SHADOW! You did " + randomDamage + " damage to the SHADOW.");
                     shadowClone.HP -= randomDamage;
-                    Console.WriteLine("The enemy now has " + shadowClone.HP + " hit points left!");
+                    if (shadowClone.HP > 0)
+                    {
+                        Console.WriteLine("The enemy now has " + shadowClone.HP + " hit points left!");
+                    }
                     Thread.Sleep(3000);
                     Console.Clear();
 

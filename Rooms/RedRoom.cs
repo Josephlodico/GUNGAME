@@ -31,7 +31,10 @@ namespace GunGame.Rooms
                     int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shot at the goblin! You did " + randomDamage + " damage to the goblin.");
                     goblin.HP -= randomDamage;
-                    Console.WriteLine("The enemy now has " + goblin.HP + " hit points left!");
+                    if (goblin.HP > 0)
+                    {
+                        Console.WriteLine("The enemy now has " + goblin.HP + " hit points left!");
+                    }
                 }
                 else
                 {
@@ -76,7 +79,10 @@ namespace GunGame.Rooms
                     int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shoot at the blob! You did " + randomDamage + " damage to the blob.");
                     blob.HP -= randomDamage;
-                    Console.WriteLine("The enemy now has " + blob.HP + " hit points left!");
+                    if (blob.HP > 0)
+                    {
+                        Console.WriteLine("The enemy now has " + blob.HP + " hit points left!");
+                    }
                 }
                 else
                 {
@@ -120,7 +126,10 @@ namespace GunGame.Rooms
                     int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shoot at the goomba! You did " + randomDamage + " damage to the goomba.");
                     goomba.HP -= randomDamage;
-                    Console.WriteLine("The enemy now has " + goomba.HP + " hit points left!");
+                    if (goomba.HP > 0)
+                    {
+                        Console.WriteLine("The enemy now has " + goomba.HP + " hit points left!");
+                    }
                 }
                 else
                 {
