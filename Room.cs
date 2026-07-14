@@ -1,9 +1,7 @@
-﻿namespace GunGame
+namespace GunGame
 {
-    internal abstract class Room
+    public abstract class Room
     {
-
-        internal abstract string CreateDescription();
-        internal abstract void ReceiveTask(string choice);
+        public abstract void Play(GameContext context);
     }
 }
