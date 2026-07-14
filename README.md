@@ -3,7 +3,7 @@
 
 A text-based console adventure game built in C# where you fight monsters, solve puzzles, and escape through a series of challenging rooms.
 
-> Made by Joseph & Anthony | April 2024
+> Made by Joseph Lodico and Anthony Vitalei-D'Ermes | April 2024 | Updated 2026-07-14
 
 ---
 

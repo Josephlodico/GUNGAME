@@ -40,19 +40,22 @@ namespace GunGame.Rooms
                     Console.WriteLine(" Too bad!");
                     Console.WriteLine("===============================================");
                 }
-                // Enemy's turn to attack
-                int enemyRandomDamage = player.RollEnemyDamage(random);
-                Console.WriteLine("The goblin attacks you and does " + enemyRandomDamage + " damage!");
-                player.HP -= enemyRandomDamage;
-                Console.WriteLine("the Goblin now has " + goblin.HP + " HP left ");
-                Console.WriteLine("===============================================");
-                Console.WriteLine("and NOW you have " + player.HP + " HP left ");
-                Console.WriteLine("and  " + player.Bullets + " bullets left ");
                 if (goblin.HP <= 0)
                 {
                     Console.WriteLine("\n\n\tYou defeated the goblin!\n");
                     Console.WriteLine("===============================================");
                     Console.WriteLine("\nhere comes the Blob! NOW");
+                }
+                else
+                {
+                    // Enemy's turn to attack
+                    int enemyRandomDamage = player.RollEnemyDamage(random);
+                    Console.WriteLine("The goblin attacks you and does " + enemyRandomDamage + " damage!");
+                    player.HP -= enemyRandomDamage;
+                    Console.WriteLine("the Goblin now has " + goblin.HP + " HP left ");
+                    Console.WriteLine("===============================================");
+                    Console.WriteLine("and NOW you have " + player.HP + " HP left ");
+                    Console.WriteLine("and  " + player.Bullets + " bullets left ");
                 }
             }
 
@@ -83,6 +86,14 @@ namespace GunGame.Rooms
                     Console.WriteLine(" Too bad!");
                     Console.WriteLine("===============================================");
                 }
+                if (blob.HP <= 0)
+                {
+                    Console.WriteLine("\n\n\tYou defeated the blob!\n");
+                    Console.WriteLine("\nhere comes the Goomba! NOW");
+                    Console.WriteLine("===============================================");
+                    break;
+                }
+
                 // Enemy's turn to attack
                 int enemyRandomDamage = player.RollEnemyDamage(random);
                 Console.WriteLine("The blob attacks you and does " + enemyRandomDamage + " damage!");
@@ -91,14 +102,6 @@ namespace GunGame.Rooms
                 Console.WriteLine("===============================================");
                 Console.WriteLine("and NOW you have " + player.HP + " HP left ");
                 Console.WriteLine(" and  " + player.Bullets + " bullets left ");
-
-                if (blob.HP <= 0)
-                {
-                    Console.WriteLine("\n\n\tYou defeated the blob!\n");
-                    Console.WriteLine("\nhere comes the Goomba! NOW");
-                    Console.WriteLine("===============================================");
-                    break;
-                }
             }
 
             if (player.HP <= 0)
@@ -128,15 +131,6 @@ namespace GunGame.Rooms
                     Console.WriteLine(" Too bad!");
                     Console.WriteLine("===============================================");
                 }
-                // Enemy's turn to attack
-                int enemyRandomDamage = player.RollEnemyDamage(random);
-                Console.WriteLine("The goomba attacks you and does " + enemyRandomDamage + " damage!");
-                player.HP -= enemyRandomDamage;
-                Console.WriteLine(" The Goomba now has " + goomba.HP + " HP left ");
-                Console.WriteLine("===============================================");
-                Console.WriteLine("You NOW have " + player.HP + " HP left ");
-                Console.WriteLine("and " + player.Bullets + " bullets left ");
-
                 if (goomba.HP <= 0)
                 {
                     Console.WriteLine("\n\n\tYou defeated the Goomba! and you survived, GOOD WORK!\n");
@@ -145,6 +139,15 @@ namespace GunGame.Rooms
                     context.CompletedRooms.Add("red");
                     break;
                 }
+
+                // Enemy's turn to attack
+                int enemyRandomDamage = player.RollEnemyDamage(random);
+                Console.WriteLine("The goomba attacks you and does " + enemyRandomDamage + " damage!");
+                player.HP -= enemyRandomDamage;
+                Console.WriteLine(" The Goomba now has " + goomba.HP + " HP left ");
+                Console.WriteLine("===============================================");
+                Console.WriteLine("You NOW have " + player.HP + " HP left ");
+                Console.WriteLine("and " + player.Bullets + " bullets left ");
             }
         }
     }
