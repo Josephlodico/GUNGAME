@@ -86,15 +86,15 @@ namespace GunGame.Core
                 Console.WriteLine("Now Type the room color to  START or write gold to access your inventory");
 
                 Console.WriteLine("===============================================");
-                Console.WriteLine("1- [red door]");
+                WriteDoorOption("1- [red door]", "red");
                 Console.WriteLine("===============================================");
-                Console.WriteLine("2- [black door]");
+                WriteDoorOption("2- [black door]", "black");
                 Console.WriteLine("===============================================");
-                Console.WriteLine("3- [green door]");
+                WriteDoorOption("3- [green door]", "green");
                 Console.WriteLine("===============================================");
-                Console.WriteLine("4- [pink door]");
+                WriteDoorOption("4- [pink door]", "pink");
                 Console.WriteLine("===============================================");
-                Console.WriteLine("5- [blue door]");
+                WriteDoorOption("5- [blue door]", "blue");
                 Console.WriteLine("===============================================");
                 Console.WriteLine("6- [Locked door]");
                 Console.WriteLine("===============================================");
@@ -168,6 +168,20 @@ namespace GunGame.Core
             }
             Console.WriteLine("Congratulations! You have completed all the rooms!");
             SaveSystem.SaveGame(new GameData { playerHP = player.HP, bullets = player.Bullets });
+        }
+
+        private void WriteDoorOption(string label, string roomKey)
+        {
+            if (completedRooms.Contains(roomKey))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(label);
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.WriteLine(label);
+            }
         }
     }
 }
