@@ -1,4 +1,4 @@
-﻿namespace NarrativeProject
+﻿namespace GunGame
 {
     internal abstract class Room
     {

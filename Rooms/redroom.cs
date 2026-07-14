@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 
-namespace NarrativeProject.Rooms
+namespace GunGame.Rooms
 {
 
     internal  class redroom : Room

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace NarrativeProject.Rooms
+namespace GunGame.Rooms
 {
     internal  class greenroom : Room
     {

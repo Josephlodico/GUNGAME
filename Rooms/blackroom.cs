@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 
 
-namespace NarrativeProject.Rooms
+namespace GunGame.Rooms
 {
     internal class blackroom : Room
     {

@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 //Made by Joseph, Anthony
 //Date:2024-04-23
 //Description: using gitkraken and github and creating a game called GUNGAME.
-namespace NarrativeProject
+namespace GunGame
 {
     [Serializable]
     public class GameData
