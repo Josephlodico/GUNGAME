@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using GunGame.Rooms;
 
-namespace GunGame
+namespace GunGame.Core
 {
     public class GameEngine
     {

@@ -1,4 +1,4 @@
-namespace GunGame
+namespace GunGame.Core
 {
     public class GameData
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace GunGame
+namespace GunGame.Core
 {
     public class Player
     {

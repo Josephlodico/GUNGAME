@@ -1,4 +1,5 @@
 using System;
+using GunGame.Core;
 
 namespace GunGame.Rooms
 {
