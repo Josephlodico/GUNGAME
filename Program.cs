@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using System.Threading;
-using System.Xml.Serialization;
 //project name GUNGAME
 //Made by Joseph, Anthony
 //Date:2024-04-23
 //Description: using gitkraken and github and creating a game called GUNGAME.
 namespace GunGame
 {
-    [Serializable]
     public class GameData
     {
-        
+
         public int playerHP;
         public int bullets;
         // Add more properties as needed
@@ -26,22 +23,16 @@ namespace GunGame
 
         public static void SaveGame(GameData data)
         {
-            // Serialize the game data
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream fileStream = File.Create(savePath);
-            formatter.Serialize(fileStream, data);
-            fileStream.Close();
+            string json = JsonSerializer.Serialize(data);
+            File.WriteAllText(savePath, json);
             Console.WriteLine("Game saved successfully!");
         }
         public static GameData LoadGame()
         {
             if (File.Exists(savePath))
             {
-                // Deserialize the game data
-                BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fileStream = File.Open(savePath, FileMode.Open);
-                GameData data = (GameData)formatter.Deserialize(fileStream);
-                fileStream.Close();
+                string json = File.ReadAllText(savePath);
+                GameData data = JsonSerializer.Deserialize<GameData>(json);
                 Console.WriteLine("Game loaded successfully!");
                 return data;
             }

@@ -1,11 +1,4 @@
-﻿using System;
-using static System.Collections.Specialized.BitVector32;
-using System.Threading;
-using System.Collections.Generic;
-using System.Collections;
-
-
-namespace GunGame.Rooms
+﻿namespace GunGame.Rooms
 {
 
     internal  class redroom : Room
