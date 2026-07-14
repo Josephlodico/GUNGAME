@@ -28,20 +28,11 @@ namespace GunGame.Core
         {
             player.MedkitPickedUp = false;
 
-            Console.WriteLine(" here is your saved progress");
-
-            GameData gameData = new GameData();
-            gameData.playerHP = 0;
-            gameData.bullets = 0;
-
-            SaveSystem.SaveGame(gameData);
-
             GameData loadedData = SaveSystem.LoadGame();
 
             if (loadedData != null)
             {
-                Console.WriteLine("Loaded Player Name: " + loadedData.bullets);
-                Console.WriteLine("Loaded Player Score: " + loadedData.playerHP);
+                Console.WriteLine("Your last save had " + loadedData.playerHP + " HP and " + loadedData.bullets + " bullets.");
             }
 
             Console.ReadLine();
@@ -60,7 +51,7 @@ namespace GunGame.Core
                 Console.WriteLine("===============================================");
                 Console.WriteLine("1- Yes");
 
-                int action = Convert.ToInt32(Console.ReadLine());
+                int action = Room.ReadInt(1, 1);
 
                 if (action == 1)
                 {
@@ -164,16 +155,19 @@ namespace GunGame.Core
                 if (player.Bullets <= 0)
                 {
                     Console.WriteLine("you ran out of bullets, Game over");
+                    SaveSystem.SaveGame(new GameData { playerHP = player.HP, bullets = player.Bullets });
                     return;
                 }
 
                 if (player.HP <= 0)
                 {
                     Console.WriteLine("You have died. Game over.");
+                    SaveSystem.SaveGame(new GameData { playerHP = player.HP, bullets = player.Bullets });
                     return;
                 }
             }
             Console.WriteLine("Congratulations! You have completed all the rooms!");
+            SaveSystem.SaveGame(new GameData { playerHP = player.HP, bullets = player.Bullets });
         }
     }
 }

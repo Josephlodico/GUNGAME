@@ -8,6 +8,8 @@ namespace GunGame.Rooms
     {
         public override void Play(GameContext context)
         {
+            var player = context.Player;
+
             Console.Clear();
             Console.WriteLine("===============================================");
             Console.WriteLine("You Entered the green room...");
@@ -20,11 +22,12 @@ namespace GunGame.Rooms
             Console.WriteLine("Type 1 for True, 2 for False..");
             Console.WriteLine("===============================================");
 
-            int answer = Convert.ToInt32(Console.ReadLine());
+            int answer = Room.ReadInt(1, 2);
 
             if (answer == 1)
             {
                 Console.WriteLine("You got it wrong, you DIED!");
+                player.HP = 0;
                 return;
             }
             if (answer == 2)
@@ -35,7 +38,7 @@ namespace GunGame.Rooms
 
                 Console.WriteLine("1- True or false: The mona lisa was painted by leanardo Da vinci ");
                 Console.WriteLine("Type 1 for True, 2 for False..");
-                answer = Convert.ToInt32(Console.ReadLine());
+                answer = Room.ReadInt(1, 2);
 
                 if (answer == 1)
                 {
@@ -47,6 +50,7 @@ namespace GunGame.Rooms
                 if (answer == 2)
                 {
                     Console.WriteLine("You Died!!! Wronggg");
+                    player.HP = 0;
                     return;
                 }
             }

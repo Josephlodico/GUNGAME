@@ -18,12 +18,12 @@ namespace GunGame.Rooms
             var blob = new Blob();
             var goomba = new Goomba();
 
-            while (!goblin.IsDefeated)
+            while (!goblin.IsDefeated && player.HP > 0)
             {
                 Console.WriteLine("Would you like to attack the goblin?");
                 Console.WriteLine("1- Yes");
                 Console.WriteLine("2- No");
-                int action = Convert.ToInt32(Console.ReadLine());
+                int action = Room.ReadInt(1, 2);
 
                 if (action == 1)
                 {
@@ -55,12 +55,18 @@ namespace GunGame.Rooms
                     Console.WriteLine("\nhere comes the Blob! NOW");
                 }
             }
-            while (!blob.IsDefeated)
+
+            if (player.HP <= 0)
+            {
+                return;
+            }
+
+            while (!blob.IsDefeated && player.HP > 0)
             {
                 Console.WriteLine("Would you like to attack the blob?");
                 Console.WriteLine("1- Yes");
                 Console.WriteLine("2- No");
-                int action = Convert.ToInt32(Console.ReadLine());
+                int action = Room.ReadInt(1, 2);
 
                 if (action == 1)
                 {
@@ -94,12 +100,18 @@ namespace GunGame.Rooms
                     break;
                 }
             }
-            while (!goomba.IsDefeated)
+
+            if (player.HP <= 0)
+            {
+                return;
+            }
+
+            while (!goomba.IsDefeated && player.HP > 0)
             {
                 Console.WriteLine("Would you like to attack the goomba?");
                 Console.WriteLine("1- Yes");
                 Console.WriteLine("2- No");
-                int action = Convert.ToInt32(Console.ReadLine());
+                int action = Room.ReadInt(1, 2);
 
                 if (action == 1)
                 {

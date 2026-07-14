@@ -8,6 +8,8 @@ namespace GunGame.Rooms
     {
         public override void Play(GameContext context)
         {
+            var player = context.Player;
+
             Console.Clear();
             Console.WriteLine("===============================================");
             Console.WriteLine("You Enter the Pink Room...");
@@ -23,7 +25,7 @@ namespace GunGame.Rooms
             Console.Clear();
             Console.WriteLine("What is the difference?");
             Console.WriteLine("Was it: 1- the Spacing of the Nose.. 2- How long the mouth was   ... 3- One was sad, other was happy...");
-            int drawAnswer = Convert.ToInt32(Console.ReadLine());
+            int drawAnswer = Room.ReadInt(1, 3);
 
             if (drawAnswer == 1)
             {
@@ -35,10 +37,14 @@ namespace GunGame.Rooms
             if (drawAnswer == 2)
             {
                 Console.WriteLine("Incorect, you lose!");
+                player.HP = 0;
+                return;
             }
             if (drawAnswer == 3)
             {
                 Console.WriteLine("Incorect, you lose!");
+                player.HP = 0;
+                return;
             }
         }
     }
