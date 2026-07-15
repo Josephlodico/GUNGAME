@@ -30,5 +30,13 @@ namespace GunGame.Core
                 return null;
             }
         }
+
+        public static void DeleteSave()
+        {
+            if (File.Exists(savePath))
+            {
+                File.Delete(savePath);
+            }
+        }
     }
 }

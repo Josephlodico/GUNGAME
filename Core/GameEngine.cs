@@ -26,16 +26,31 @@ namespace GunGame.Core
 
         public void Run()
         {
-            player.MedkitPickedUp = false;
-
             GameData loadedData = SaveSystem.LoadGame();
+            bool resuming = false;
 
             if (loadedData != null)
             {
-                Console.WriteLine("Your last save had " + loadedData.playerHP + " HP and " + loadedData.bullets + " bullets.");
-            }
+                Console.WriteLine("A saved game was found: " + loadedData.playerHP + " HP, " + loadedData.bullets + " bullets, " + loadedData.completedRooms.Count + " room(s) completed.");
+                Console.WriteLine("1- Continue saved game");
+                Console.WriteLine("2- Start a new game");
+                int resumeChoice = Room.ReadInt(1, 2);
 
-            Console.ReadLine();
+                if (resumeChoice == 1)
+                {
+                    player.HP = loadedData.playerHP;
+                    player.Bullets = loadedData.bullets;
+                    player.MedkitPickedUp = loadedData.medkitPickedUp;
+                    player.MedkitUsed = loadedData.medkitUsed;
+                    completedRooms.Clear();
+                    completedRooms.AddRange(loadedData.completedRooms);
+                    resuming = true;
+                }
+                else
+                {
+                    SaveSystem.DeleteSave();
+                }
+            }
 
             Console.WriteLine("WELCOME TO GUNGAME");
             Console.WriteLine(" +--^----------,--------,-----,--------^-,\r\n | |||||||||   `--------'     |          O\r\n `+---------------------------^----------|\r\n   `\\_,---------,---------,--------------'\r\n     / XXXXXX /'|       /'\r\n    / XXXXXX /  `\\    /'\r\n   / XXXXXX /`-------'\r\n  / XXXXXX /\r\n / XXXXXX /\r\n(________(                \r\n `------'    ");
@@ -43,36 +58,39 @@ namespace GunGame.Core
             Console.ReadLine();
             Console.Clear();
 
-            while (true)
+            if (!resuming)
             {
+                while (true)
+                {
+                    Console.Clear();
+                    Console.WriteLine("===============================================");
+                    Console.WriteLine("You wake up in a room confused. In front of you there's a gun,Do you pick it up?");
+                    Console.WriteLine("===============================================");
+                    Console.WriteLine("1- Yes");
+
+                    int action = Room.ReadInt(1, 1);
+
+                    if (action == 1)
+                    {
+                        Console.WriteLine("===============================================");
+                        Console.WriteLine("You picked up the gun.");
+                        Console.WriteLine("===============================================");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        break;
+                    }
+                }
+
                 Console.Clear();
                 Console.WriteLine("===============================================");
-                Console.WriteLine("You wake up in a room confused. In front of you there's a gun,Do you pick it up?");
+                Console.WriteLine("You notice how many bullets you have in total");
+                Console.WriteLine("You have " + player.Bullets + " bullets");
+                Console.WriteLine("You have " + player.HP + " hit points available");
                 Console.WriteLine("===============================================");
-                Console.WriteLine("1- Yes");
 
-                int action = Room.ReadInt(1, 1);
-
-                if (action == 1)
-                {
-                    Console.WriteLine("===============================================");
-                    Console.WriteLine("You picked up the gun.");
-                    Console.WriteLine("===============================================");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    break;
-                }
+                Thread.Sleep(4000);
+                Console.Clear();
             }
-
-            Console.Clear();
-            Console.WriteLine("===============================================");
-            Console.WriteLine("You notice how many bullets you have in total");
-            Console.WriteLine("You have " + player.Bullets + " bullets");
-            Console.WriteLine("You have " + player.HP + " hit points available");
-            Console.WriteLine("===============================================");
-
-            Thread.Sleep(4000);
-            Console.Clear();
 
             var context = new GameContext(player, random, completedRooms);
 
@@ -83,7 +101,7 @@ namespace GunGame.Core
                 Console.WriteLine("===============================================");
                 Console.WriteLine("You see 6 doors in front of you, though the 6th door is Locked. ");
                 Console.WriteLine("Once you complete the TASK in ALL the 5 main rooms, the Locked door will open. ");
-                Console.WriteLine("Now Type the room color to  START or write gold to access your inventory");
+                Console.WriteLine("Now Type the room color to  START, write gold to access your inventory, or write save to save your progress");
 
                 Console.WriteLine("===============================================");
                 WriteDoorOption("1- [red door]", "red");
@@ -99,6 +117,8 @@ namespace GunGame.Core
                 Console.WriteLine("6- [Locked door]");
                 Console.WriteLine("===============================================");
                 Console.WriteLine("7- [gold door(inventory)]");
+                Console.WriteLine("===============================================");
+                Console.WriteLine("8- [Save Game]");
                 Console.WriteLine("===============================================");
                 Console.WriteLine("Which door would you like to go in?");
                 Console.WriteLine("===============================================");
@@ -142,6 +162,17 @@ namespace GunGame.Core
                         Console.WriteLine("You've already picked up the medkit.");
                     }
                 }
+                else if (room == "save")
+                {
+                    SaveSystem.SaveGame(new GameData
+                    {
+                        playerHP = player.HP,
+                        bullets = player.Bullets,
+                        medkitPickedUp = player.MedkitPickedUp,
+                        medkitUsed = player.MedkitUsed,
+                        completedRooms = new List<string>(completedRooms),
+                    });
+                }
                 else
                 {
                     Console.WriteLine("Invalid action. Please choose again.");
@@ -155,19 +186,19 @@ namespace GunGame.Core
                 if (player.Bullets <= 0)
                 {
                     Console.WriteLine("you ran out of bullets, Game over");
-                    SaveSystem.SaveGame(new GameData { playerHP = player.HP, bullets = player.Bullets });
+                    SaveSystem.DeleteSave();
                     return;
                 }
 
                 if (player.HP <= 0)
                 {
                     Console.WriteLine("You have died. Game over.");
-                    SaveSystem.SaveGame(new GameData { playerHP = player.HP, bullets = player.Bullets });
+                    SaveSystem.DeleteSave();
                     return;
                 }
             }
             Console.WriteLine("Congratulations! You have completed all the rooms!");
-            SaveSystem.SaveGame(new GameData { playerHP = player.HP, bullets = player.Bullets });
+            SaveSystem.DeleteSave();
         }
 
         private void WriteDoorOption(string label, string roomKey)
