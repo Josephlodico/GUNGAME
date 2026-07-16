@@ -26,7 +26,11 @@ namespace GunGame.Core
 
         public void UseMedkit()
         {
-            if (!MedkitUsed)
+            if (!MedkitPickedUp)
+            {
+                Console.WriteLine("You don't have a medkit to use.");
+            }
+            else if (!MedkitUsed)
             {
                 MedkitUsed = true;
                 HP += 55;
