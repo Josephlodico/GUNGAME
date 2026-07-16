@@ -10,7 +10,7 @@ namespace GunGame.Rooms
             var player = context.Player;
             var random = context.Random;
 
-            Console.Clear();
+            Room.SafeClear();
             Console.WriteLine("You entered the red door.");
             Console.WriteLine("In front of you, you see a weird looking goblin!");
 
@@ -25,9 +25,14 @@ namespace GunGame.Rooms
                 Console.WriteLine("2- No");
                 int action = Room.ReadInt(1, 2);
 
-                if (action == 1)
+                if (action == 1 && !player.CanShoot)
                 {
-                    Console.Clear();
+                    Room.SafeClear();
+                    Console.WriteLine("Click... You're out of bullets to fire!");
+                }
+                else if (action == 1)
+                {
+                    Room.SafeClear();
                     int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shot at the goblin! You did " + randomDamage + " damage to the goblin.");
                     goblin.HP -= randomDamage;
@@ -38,7 +43,7 @@ namespace GunGame.Rooms
                 }
                 else
                 {
-                    Console.Clear();
+                    Room.SafeClear();
                     Console.WriteLine(" Too bad!");
                     Console.WriteLine("===============================================");
                 }
@@ -73,9 +78,14 @@ namespace GunGame.Rooms
                 Console.WriteLine("2- No");
                 int action = Room.ReadInt(1, 2);
 
-                if (action == 1)
+                if (action == 1 && !player.CanShoot)
                 {
-                    Console.Clear();
+                    Room.SafeClear();
+                    Console.WriteLine("Click... You're out of bullets to fire!");
+                }
+                else if (action == 1)
+                {
+                    Room.SafeClear();
                     int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shoot at the blob! You did " + randomDamage + " damage to the blob.");
                     blob.HP -= randomDamage;
@@ -86,7 +96,7 @@ namespace GunGame.Rooms
                 }
                 else
                 {
-                    Console.Clear();
+                    Room.SafeClear();
                     Console.WriteLine(" Too bad!");
                     Console.WriteLine("===============================================");
                 }
@@ -120,9 +130,14 @@ namespace GunGame.Rooms
                 Console.WriteLine("2- No");
                 int action = Room.ReadInt(1, 2);
 
-                if (action == 1)
+                if (action == 1 && !player.CanShoot)
                 {
-                    Console.Clear();
+                    Room.SafeClear();
+                    Console.WriteLine("Click... You're out of bullets to fire!");
+                }
+                else if (action == 1)
+                {
+                    Room.SafeClear();
                     int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shoot at the goomba! You did " + randomDamage + " damage to the goomba.");
                     goomba.HP -= randomDamage;
@@ -133,7 +148,7 @@ namespace GunGame.Rooms
                 }
                 else
                 {
-                    Console.Clear();
+                    Room.SafeClear();
                     Console.WriteLine(" Too bad!");
                     Console.WriteLine("===============================================");
                 }

@@ -56,13 +56,13 @@ namespace GunGame.Core
             Console.WriteLine(" +--^----------,--------,-----,--------^-,\r\n | |||||||||   `--------'     |          O\r\n `+---------------------------^----------|\r\n   `\\_,---------,---------,--------------'\r\n     / XXXXXX /'|       /'\r\n    / XXXXXX /  `\\    /'\r\n   / XXXXXX /`-------'\r\n  / XXXXXX /\r\n / XXXXXX /\r\n(________(                \r\n `------'    ");
             Console.WriteLine("PRESS ENTER TO START THE GAME");
             Console.ReadLine();
-            Console.Clear();
+            Room.SafeClear();
 
             if (!resuming)
             {
                 while (true)
                 {
-                    Console.Clear();
+                    Room.SafeClear();
                     Console.WriteLine("===============================================");
                     Console.WriteLine("You wake up in a room confused. In front of you there's a gun,Do you pick it up?");
                     Console.WriteLine("===============================================");
@@ -76,12 +76,12 @@ namespace GunGame.Core
                         Console.WriteLine("You picked up the gun.");
                         Console.WriteLine("===============================================");
                         Thread.Sleep(1000);
-                        Console.Clear();
+                        Room.SafeClear();
                         break;
                     }
                 }
 
-                Console.Clear();
+                Room.SafeClear();
                 Console.WriteLine("===============================================");
                 Console.WriteLine("You notice how many bullets you have in total");
                 Console.WriteLine("You have " + player.Bullets + " bullets");
@@ -89,7 +89,7 @@ namespace GunGame.Core
                 Console.WriteLine("===============================================");
 
                 Thread.Sleep(4000);
-                Console.Clear();
+                Room.SafeClear();
             }
 
             var context = new GameContext(player, random, completedRooms);
@@ -123,12 +123,12 @@ namespace GunGame.Core
                 Console.WriteLine("Which door would you like to go in?");
                 Console.WriteLine("===============================================");
 
-                string room = Console.ReadLine().ToLower();
+                string room = Room.ReadLineOrExit().ToLower();
 
                 if (completedRooms.Contains(room))
                 {
                     Console.WriteLine("YOU HAVE ALREADY COMPLETED THIS ROOM. PLEASE CHOOSE ANOTHER ONE.");
-                    Console.Clear();
+                    Room.SafeClear();
                     continue;
                 }
 

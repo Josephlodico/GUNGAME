@@ -10,13 +10,13 @@ namespace GunGame.Rooms
         {
             var player = context.Player;
 
-            Console.Clear();
+            Room.SafeClear();
             Console.WriteLine("===============================================");
             Console.WriteLine("You Entered the green room...");
             Console.WriteLine("Solve the True or false questions to complete this room...");
             Console.WriteLine("===============================================");
             Thread.Sleep(2000);
-            Console.Clear();
+            Room.SafeClear();
             Console.WriteLine("===============================================");
             Console.WriteLine("1- True or false: Lasalle video Game DEC is 2 years");
             Console.WriteLine("Type 1 for True, 2 for False..");
@@ -34,7 +34,7 @@ namespace GunGame.Rooms
             {
                 Console.WriteLine("Ding Ding! You got it right. Now, next question!");
                 Thread.Sleep(2000);
-                Console.Clear();
+                Room.SafeClear();
 
                 Console.WriteLine("1- True or false: The mona lisa was painted by leanardo Da vinci ");
                 Console.WriteLine("Type 1 for True, 2 for False..");

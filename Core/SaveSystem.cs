@@ -17,16 +17,23 @@ namespace GunGame.Core
 
         public static GameData LoadGame()
         {
-            if (File.Exists(savePath))
+            if (!File.Exists(savePath))
+            {
+                Console.WriteLine("No saved game found.");
+                return null;
+            }
+
+            try
             {
                 string json = File.ReadAllText(savePath);
                 GameData data = JsonSerializer.Deserialize<GameData>(json);
                 Console.WriteLine("Game loaded successfully!");
                 return data;
             }
-            else
+            catch (JsonException)
             {
-                Console.WriteLine("No saved game found.");
+                Console.WriteLine("The saved game file was corrupted and could not be loaded. Starting a new game.");
+                DeleteSave();
                 return null;
             }
         }

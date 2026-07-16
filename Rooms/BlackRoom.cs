@@ -12,7 +12,7 @@ namespace GunGame.Rooms
             string[] codes = { "241-124-7645-653" };
             var stopwatch = new Stopwatch();
 
-            Console.Clear();
+            Room.SafeClear();
             Console.WriteLine("===============================================");
             Console.WriteLine("You entered the black room.");
 

@@ -11,14 +11,14 @@ namespace GunGame.Rooms
             var player = context.Player;
             var random = context.Random;
 
-            Console.Clear();
+            Room.SafeClear();
             Console.WriteLine("===============================================");
             Console.WriteLine("You Entered the blue room...");
             Console.WriteLine("In the room, you see an exact copy.. of you! He has the same HP and Attack power, Defeat Him!!");
             Console.WriteLine("===============================================");
             Console.WriteLine("           __.......__\r\n            .-:::::::::::::-.\r\n          .:::''':::::::''':::.\r\n        .:::'     `:::'     `:::. \r\n   .'\\  ::'   ^^^  `:'  ^^^   '::  /`.\r\n  :   \\ ::   _.__       __._   :: /   ;\r\n :     \\`: .' ___\\     /___ `. :'/     ; \r\n:       /\\   (_|_)\\   /(_|_)   /\\       ;\r\n:      / .\\   __.' ) ( `.__   /. \\      ;\r\n:      \\ (        {   }        ) /      ; \r\n :      `-(     .  ^\"^  .     )-'      ;\r\n  `.       \\  .'<`-._.-'>'.  /       .'\r\n    `.      \\    \\;`.';/    /      .'\r\n   `._    `-._       _.-'    _.'\r\n       .'`-.__ .'`-._.-'`. __.-'`.\r\n     .'       `.         .'       `.\r\n   .'           `-.   .-'           `.");
             Thread.Sleep(3000);
-            Console.Clear();
+            Room.SafeClear();
 
             var shadowClone = new ShadowClone();
 
@@ -32,7 +32,7 @@ namespace GunGame.Rooms
                 Console.WriteLine("===============================================");
 
                 // Read user input and handle errors
-                bool validInput = int.TryParse(Console.ReadLine(), out int userAction);
+                bool validInput = int.TryParse(Room.ReadLineOrExit(), out int userAction);
 
                 if (!validInput || userAction < 1 || userAction > 3)
                 {
@@ -40,9 +40,18 @@ namespace GunGame.Rooms
                     continue; // Skip the rest of the loop and prompt again
                 }
 
-                if (userAction == 1)
+                if (userAction == 1 && !player.CanShoot)
                 {
-                    Console.Clear();
+                    Room.SafeClear();
+                    Console.WriteLine("Click... You're out of bullets to fire!");
+                    int enemyDamage = player.RollEnemyDamage(random);
+                    Console.WriteLine("The SHADOW Attacks You, he does " + enemyDamage + " To You!");
+                    player.HP -= enemyDamage;
+                    Console.WriteLine("You Now have " + player.HP + " Hp Left!");
+                }
+                else if (userAction == 1)
+                {
+                    Room.SafeClear();
                     int randomDamage = player.Shoot(random);
                     Console.WriteLine("You shoot at the SHADOW! You did " + randomDamage + " damage to the SHADOW.");
                     shadowClone.HP -= randomDamage;
@@ -51,7 +60,7 @@ namespace GunGame.Rooms
                         Console.WriteLine("The enemy now has " + shadowClone.HP + " hit points left!");
                     }
                     Thread.Sleep(3000);
-                    Console.Clear();
+                    Room.SafeClear();
 
                     if (shadowClone.HP <= 0)
                     {
@@ -70,7 +79,7 @@ namespace GunGame.Rooms
                 }
                 else if (userAction == 3)
                 {
-                    Console.Clear();
+                    Room.SafeClear();
                     player.UseMedkit();
                     int enemyDamage = player.RollEnemyDamage(random);
                     Console.WriteLine("The SHADOW Attacks You, he does " + enemyDamage + " To You!");
@@ -79,7 +88,7 @@ namespace GunGame.Rooms
                 }
                 else
                 {
-                    Console.Clear();
+                    Room.SafeClear();
                     Console.WriteLine("Wait, He's FAST!");
                     int enemyDamage = player.RollEnemyDamage(random);
                     Console.WriteLine("The SHADOW Attacks You, he does " + enemyDamage + " To You!");
