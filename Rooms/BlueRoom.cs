@@ -70,7 +70,12 @@ namespace GunGame.Rooms
                 }
                 else if (userAction == 3)
                 {
+                    Console.Clear();
                     player.UseMedkit();
+                    int enemyDamage = player.RollEnemyDamage(random);
+                    Console.WriteLine("The SHADOW Attacks You, he does " + enemyDamage + " To You!");
+                    player.HP -= enemyDamage;
+                    Console.WriteLine("You Now have " + player.HP + " Hp Left!");
                 }
                 else
                 {
